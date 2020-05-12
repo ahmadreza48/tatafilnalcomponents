@@ -14,25 +14,28 @@ const useStyles = makeStyles({
 const Tbutton = (props) => {
     const classes = useStyles();
 
-    const handleClick = () => {
-        props.clickBtnFunc();
+    const {disabled, fullWidth, disableFocusRipple, disableRipple, size, className, variant, color, startIcon, endIcon} = props.option || props;
+
+    const handleClick = (event) => {
+        props.onClick(event);
     };
 
     return (
-        <div className={classes.root}>
             <Button
-                disabled={false}
-                fullWidth={false}
-                disableFocusRipple={true}
-                disableRipple={true}
-                size="medium"
-                className={classes.text}
+                disabled={disabled}
+                fullWidth={fullWidth}
+                disableFocusRipple={disableFocusRipple}
+                disableRipple={disableRipple}
+                size={size}
+                className={className}
                 onClick={handleClick}
-                variant="outlined"
-                color="secondary">
-                type here to see input label
+                variant={variant}
+                color={color}
+                startIcon={startIcon}
+                endIcon={endIcon}
+            >
+                {props.children}
             </Button>
-        </div>
     )
 };
 

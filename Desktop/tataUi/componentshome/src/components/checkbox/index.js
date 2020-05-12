@@ -1,35 +1,37 @@
 import React from 'react';
-import {TextField} from '@material-ui/core';
+import {Checkbox} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles({});
 
-export default function Ttextbox(props) {
+export default function Tchekbox(props) {
   const classes = useStyles();
 
   const {
-    defaultValue = "default value",
+    checked,
     color = "primary",
-    disabled = false
-  } = props.option || props;
+    disabled = false,
+    required = false,
+    size = "medium"
+  } = props.option;
 
   const [state,
-    setState] = React.useState({value: defaultValue});
+    setState] = React.useState(checked);
 
   const handleChange = event => {
     if ("onChange" in props) {
-      props.onChange(event.target.value);
+      props.onChange(event.target.checked);
     }
-    setState({value: event.target.value});
+    setState(event.target.checked);
   }
 
   return (
     <div>
-      <TextField
+      <Checkbox
         onChange={handleChange}
         color={color}
         disabled={disabled}
-        value={state.value}/>
+        checked={state}/>
     </div>
   );
 }
