@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Card, CardActions, CardContent, Typography} from '@material-ui/core';
+import {Card, CardContent, Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -8,14 +8,27 @@ const useStyles = makeStyles({
     },
 });
 
-const Tcard = () => {
+const Tcard = (props) => {
+    const classes = useStyles();
+    const {children, raised, align, color, display, gutterBottom, noWrap, paragraph, variant,} = props.option || props;
     return (
-        <Card>
-            <CardContent>
-                <Typography>hi</Typography>
-                <CardActions>
-                    <Button>bye</Button>
-                </CardActions>
+        <Card
+            children={children}
+            classes={classes}
+            raised={raised}
+        >
+            <CardContent children={children}>
+                <Typography
+                    align={align}
+                    color={color}
+                    display={display}
+                    gutterBottom={gutterBottom}
+                    noWrap={noWrap}
+                    paragraph={paragraph}
+                    variant={variant}
+                >
+                    {props.children}
+                </Typography>
             </CardContent>
         </Card>
     )
