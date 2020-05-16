@@ -7,6 +7,7 @@ import Tcard from './components/card/card';
 import Tlabel from './components/label/index';
 import Ttextbox from './components/textField/index';
 import Tchekbox from './components/checkbox/index';
+import Tradiogrp from './components/radio/index';
 
 function App() {
   let showLabel = null;
@@ -18,6 +19,8 @@ function App() {
     setClick] = React.useState(false);
   const [getChecked,
     setChecked] = React.useState(false);
+  const [getSelectedRdb,
+    setSelectedRdb] = React.useState({id: "", value: ""});
 
   const handleTextChange = event => {
     setClick(false);
@@ -29,8 +32,15 @@ function App() {
     setChecked(event);
   }
 
+  const handleRdGrpChange = event => {
+    // console.log(`handleRdGrpChange label: ${event.id}`);
+    // console.log(`handleRdGrpChange value: ${event.value}`);
+    setSelectedRdb({id: event.id, value: event.value});
+  }
+
   const handleBtnClick = () => {
-    console.log("handleBtnClick first line");
+    console.log(`handleBtnClick getSelectedRdb value: ${getSelectedRdb.value} `);
+    console.log(`handleBtnClick getSelectedRdb label: ${getSelectedRdb.id} `);
     setClick(true);
   }
 
@@ -57,28 +67,41 @@ function App() {
         color: "primary",
         disabled: false
       }}/>
-
-      <div className="App pullLeft">
-        <Tbutton
-          fullWidth={true}
-          size="medium"
-          color="primary"
-          variant="contained"
-          onClick={handleBtnClick}>hiii</Tbutton>
-        <Tbutton
-          size="medium"
-          color="secondary"
-          variant="contained"
-          onClick={handleBtnClick}>byee</Tbutton>
-      </div>
+      <Tbutton
+        fullWidth={true}
+        size="medium"
+        color="primary"
+        variant="contained"
+        onClick={handleBtnClick}>hiii</Tbutton>
+      <Tbutton
+        size="medium"
+        color="secondary"
+        variant="contained"
+        onClick={handleBtnClick}>byee</Tbutton>
 
       {showLabel}
 
       {showChekbox}
 
-      {/* <div className="App pullLeft">
-      <Tcard/>
-      </div> */}
+      <Tcard raised={true}>hi!!! this is test for simple card</Tcard>
+
+      <Tradiogrp
+        onChange={handleRdGrpChange}
+        option={{
+        name: "reza",
+        itemsList: [
+          {
+            value: "1",
+            label: "saeidi"
+          }, {
+            value: "2",
+            label: "talebi"
+          }, {
+            value: "3",
+            label: "kashani"
+          }
+        ]
+      }}></Tradiogrp>
 
     </div>
 

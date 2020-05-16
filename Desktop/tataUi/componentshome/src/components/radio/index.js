@@ -1,28 +1,46 @@
 import React from 'react';
-import {RadioGroup, Radio, FormControlLabel} from '@material-ui/core';
+import {RadioGroup, Radio, FormControl, FormLabel, FormControlLabel} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles({});
 
-export default function Tradiogroup(props) {
+export default function Tradiogrp(props) {
   const classes = useStyles();
 
-  const [value,
-    setValue] = React.useState('female');
+  const {
+    name = "ahmad",
+    defaultValue = 1,
+    itemsList
+  } = props.option;
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
+  const [state,
+    setState] = React.useState(defaultValue);
 
-  // const {   checked,   color = "primary",   disabled = false,   required =
-  // false,   size = "medium" } = props.option; const [state,   setState] =
-  // React.useState(checked); const handleChange = event => {   if ("onChange" in
-  // props) {     props.onChange(event.target.checked);   }
-  // setState(event.target.checked); }
+  const handleChange = event => {
+    event.persist();
+    if ("onChange" in props) {
+      props.onChange(event.target);
+    }
+    setState(event.target.value);
+  }
 
   return (
-    <div>
-      <RadioGroup ></RadioGroup>
-    </div>
+
+    <FormControl>
+      <FormLabel>Gender</FormLabel>
+      <RadioGroup name={name} value={state} onChange={handleChange}>
+
+        {itemsList.map(item => <FormControlLabel
+          control={< Radio id = {
+          item.label
+        }
+        value = {
+          item.value
+        } />}
+          label={item.label}/>)}
+
+      </RadioGroup>
+    </FormControl>
+
   );
 }
