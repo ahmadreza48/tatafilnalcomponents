@@ -9,35 +9,48 @@ export default function Tradiogrp(props) {
 
   const {
     name = "ahmad",
-    defaultValue = 1,
-    itemsList
-  } = props.option;
+    row = true,
+    defaultValue,
+    disabled = false,
+    disabledValues,
+    disabledIndexes,
+    items,
+    valueKey,
+    labelKey,
+    onChange
+  } = props.option || props;
 
   const [state,
-    setState] = React.useState(defaultValue);
+    setState] = React.useState(String(defaultValue));
 
   const handleChange = event => {
-    event.persist();
-    if ("onChange" in props) {
-      props.onChange(event.target);
+    // event.persist();
+    if (onChange) {
+      var selctedItem = items.filter(item => {
+        return (item[valueKey] == event.target.value);
+      });
+      if (selctedItem && selctedItem.length) {
+        selctedItem = selctedItem[0];
+      }
+      onChange(event, selctedItem);
     }
     setState(event.target.value);
   }
 
   return (
 
-    <FormControl>
+    <FormControl disabled={disabled}>
       <FormLabel>Gender</FormLabel>
-      <RadioGroup name={name} value={state} onChange={handleChange}>
-
-        {itemsList.map(item => <FormControlLabel
-          control={< Radio id = {
-          item.label
-        }
-        value = {
-          item.value
+      <RadioGroup row={row} name={name} value={state} onChange={handleChange}>
+        {items.map((item, index) => <FormControlLabel
+          disabled={(disabledValues)
+          ? disabledValues.includes(Number(item[valueKey]) || String(item[valueKey]))
+          : disabledIndexes.includes(Number(index) || String(index))}
+          key={String(item[valueKey])}
+          control={< Radio value = {
+          String(item[valueKey])
         } />}
-          label={item.label}/>)}
+          label={String(item[labelKey])}/>)}
 
       </RadioGroup>
     </FormControl>

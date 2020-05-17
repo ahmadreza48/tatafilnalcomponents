@@ -8,6 +8,7 @@ import Tlabel from './components/label/index';
 import Ttextbox from './components/textField/index';
 import Tchekbox from './components/checkbox/index';
 import Tradiogrp from './components/radio/index';
+import TExpansionPanel from "./components/ExpansionPanel/ExpansionPanel";
 
 function App() {
   let showLabel = null;
@@ -20,7 +21,7 @@ function App() {
   const [getChecked,
     setChecked] = React.useState(false);
   const [getSelectedRdb,
-    setSelectedRdb] = React.useState({id: "", value: ""});
+    setSelectedRdb] = React.useState({});
 
   const handleTextChange = event => {
     setClick(false);
@@ -32,15 +33,13 @@ function App() {
     setChecked(event);
   }
 
-  const handleRdGrpChange = event => {
-    // console.log(`handleRdGrpChange label: ${event.id}`);
-    // console.log(`handleRdGrpChange value: ${event.value}`);
-    setSelectedRdb({id: event.id, value: event.value});
+  const handleRdGrpChange = (event, selectedItem) => {
+    // console.log('handleRdGrpChange selectedItem:', selectedItem);
+    // console.log('handleRdGrpChange event:', event);
+    setSelectedRdb(selectedItem);
   }
 
   const handleBtnClick = () => {
-    console.log(`handleBtnClick getSelectedRdb value: ${getSelectedRdb.value} `);
-    console.log(`handleBtnClick getSelectedRdb label: ${getSelectedRdb.id} `);
     setClick(true);
   }
 
@@ -56,6 +55,19 @@ function App() {
     showLabel = <Tlabel option={{
       value: getText
     }}/>
+  }
+
+  const expansionPanelProps = {
+    ExpansionPanel: {
+      expanded: undefined,
+      defaultExpanded: undefined,
+      TransitionComponent: undefined,
+      disabled: undefined,
+      square: undefined,
+      TransitionProps: undefined,
+      expandIcon: undefined,
+      onChange: undefined
+    }
   }
 
   return (
@@ -86,26 +98,48 @@ function App() {
       <Tcard raised={true}>hi!!! this is test for simple card</Tcard>
 
       <Tradiogrp
-        onChange={handleRdGrpChange}
         option={{
         name: "reza",
-        itemsList: [
+        row: false,
+        defaultValue: "200",
+        disabled: false,
+        disabledValues: [100],
+        disabledIndexes: [1],
+        onChange: handleRdGrpChange,
+        valueKey: "code",
+        labelKey: "title",
+        items: [
           {
             value: "1",
-            label: "saeidi"
+            label: "saeidi",
+            title: "saeidi2",
+            code: 100
           }, {
             value: "2",
-            label: "talebi"
+            label: "talebi",
+            title: "talebi2",
+            code: 200
           }, {
             value: "3",
-            label: "kashani"
+            label: "kashani",
+            title: "kashani2",
+            code: 300
           }
         ]
-      }}></Tradiogrp>
+      }}/>
+
+      <Tcard raised={true} title={"this is title"}>hi!!! this is test for simple card</Tcard>
+      <TExpansionPanel
+        header={"hiiii"}
+        body={"this is test"}
+        {...expansionPanelProps}>
+        <Typography></Typography>
+      </TExpansionPanel>
 
     </div>
 
   );
+
 }
 
 export default App;
