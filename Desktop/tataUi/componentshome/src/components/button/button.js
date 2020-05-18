@@ -21,21 +21,21 @@ const Tbutton = (props) => {
     };
 
     return (
-            <Button
-                disabled={disabled}
-                fullWidth={fullWidth}
-                disableFocusRipple={disableFocusRipple}
-                disableRipple={disableRipple}
-                size={size}
-                className={className}
-                onClick={handleClick}
-                variant={variant}
-                color={color}
-                startIcon={startIcon}
-                endIcon={endIcon}
-            >
-                {props.children}
-            </Button>
+        <Button
+            disabled={disabled}
+            fullWidth={fullWidth}
+            disableFocusRipple={disableFocusRipple}
+            disableRipple={disableRipple}
+            size={size}
+            className={className}
+            onClick={handleClick}
+            variant={variant}
+            color={color}
+            startIcon={startIcon}
+            endIcon={endIcon}
+        >
+            {props.children}
+        </Button>
     )
 };
 

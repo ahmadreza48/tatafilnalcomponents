@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Input, Typography} from '@material-ui/core';
+import {Input, Typography, Radio, FormControlLabel} from '@material-ui/core';
 import './App.css';
 import logo from './logo.svg';
 import Tbutton from './components/button/button';
@@ -7,7 +7,8 @@ import Tcard from './components/card/card';
 import Tlabel from './components/label/index';
 import Ttextbox from './components/textField/index';
 import Tchekbox from './components/checkbox/index';
-import Tradiogrp from './components/radio/index';
+import Tradio from './components/radio/index';
+import Tradiogrp from './components/radiogrp/index';
 import TExpansionPanel from "./components/ExpansionPanel/ExpansionPanel";
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
   const handleChekboxChange = event => {
     setChecked(event);
   }
+
+  // const handleRdChange = (event, selectedItem) =>
+  // {setSelectedRdb(selectedItem);}
 
   const handleRdGrpChange = (event, selectedItem) => {
     // console.log('handleRdGrpChange selectedItem:', selectedItem);
@@ -103,11 +107,27 @@ function App() {
         row: false,
         defaultValue: "200",
         disabled: false,
-        disabledValues: [100],
+        disabledValues: [
+          100, 22
+        ],
         disabledIndexes: [1],
         onChange: handleRdGrpChange,
         valueKey: "code",
         labelKey: "title",
+        dfltItmsFirst: true,
+        defaultItems: [
+          {
+            value: "1",
+            label: "default1",
+            title: "default2",
+            code: 11
+          }, {
+            value: "2",
+            label: "pishfarz1",
+            title: "pishfarz2",
+            code: 22
+          }
+        ],
         items: [
           {
             value: "1",
@@ -126,7 +146,26 @@ function App() {
             code: 300
           }
         ]
-      }}/>
+      }}>
+        <Tradio
+          option={{
+          value: "staticValue1",
+          label: "staticLabel1",
+          disabled: true
+        }}/>
+        <Tradio
+          option={{
+          value: "staticValue2",
+          label: "staticLabel2",
+          disabled: false
+        }}/>
+        <Tradio
+          option={{
+          value: "staticValue3",
+          label: "staticLabel3",
+          disabled: false
+        }}/>
+      </Tradiogrp>
 
       <Tcard raised={true} title={"this is title"}>hi!!! this is test for simple card</Tcard>
       <TExpansionPanel
