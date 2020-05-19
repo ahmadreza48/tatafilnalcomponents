@@ -8,17 +8,23 @@ export default function Tradio(props) {
   const classes = useStyles();
 
   const {
-    value,
-    label,
+    valueKey = "value",
+    labelKey = "label",
+    item,
     disabled = false
   } = props.option || props;
+
+  const radioValue = item[valueKey];
+  const radioLabel = item[labelKey];
 
   return (
 
     <FormControlLabel
       disabled={disabled}
-      value={value}
-      control={< Radio />}
-      label={label}/>
+      key={String(radioValue)}
+      control={< Radio value = {
+      radioValue
+    } />}
+      label={radioLabel}/>
   );
 }

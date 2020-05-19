@@ -34,12 +34,9 @@ function App() {
     setChecked(event);
   }
 
-  // const handleRdChange = (event, selectedItem) =>
-  // {setSelectedRdb(selectedItem);}
-
   const handleRdGrpChange = (event, selectedItem) => {
-    // console.log('handleRdGrpChange selectedItem:', selectedItem);
-    // console.log('handleRdGrpChange event:', event);
+    console.log('handleRdGrpChange selectedItem:', selectedItem);
+    console.log('handleRdGrpChange event:', event);
     setSelectedRdb(selectedItem);
   }
 
@@ -107,27 +104,11 @@ function App() {
         row: false,
         defaultValue: "200",
         disabled: false,
-        disabledValues: [
-          100, 22
-        ],
+        disabledValues: [],
         disabledIndexes: [1],
         onChange: handleRdGrpChange,
-        valueKey: "code",
-        labelKey: "title",
-        dfltItmsFirst: true,
-        defaultItems: [
-          {
-            value: "1",
-            label: "default1",
-            title: "default2",
-            code: 11
-          }, {
-            value: "2",
-            label: "pishfarz1",
-            title: "pishfarz2",
-            code: 22
-          }
-        ],
+        valueKey: "value",
+        labelKey: "label",
         items: [
           {
             value: "1",
@@ -149,20 +130,32 @@ function App() {
       }}>
         <Tradio
           option={{
-          value: "staticValue1",
-          label: "staticLabel1",
-          disabled: true
-        }}/>
-        <Tradio
-          option={{
-          value: "staticValue2",
-          label: "staticLabel2",
+          valueKey: "code",
+          labelKey: "title",
+          item: {
+            code: 'staticValue1',
+            title: 'staticLabel1'
+          },
           disabled: false
         }}/>
         <Tradio
           option={{
-          value: "staticValue3",
-          label: "staticLabel3",
+          valueKey: "code",
+          labelKey: "title",
+          item: {
+            code: 'staticValue2',
+            title: 'staticLabel2'
+          },
+          disabled: false
+        }}/>
+        <Tradio
+          option={{
+          valueKey: "code",
+          labelKey: "title",
+          item: {
+            code: 'staticValue3',
+            title: 'staticLabel3'
+          },
           disabled: false
         }}/>
       </Tradiogrp>
