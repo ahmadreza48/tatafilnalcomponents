@@ -104,10 +104,10 @@ function App() {
         row: false,
         defaultValue: "200",
         disabled: false,
-        disabledValues: [],
-        disabledIndexes: [1],
+        disabledValues: ["staticValue1"],
+        disabledIndexes: [],
         onChange: handleRdGrpChange,
-        valueKey: "value",
+        valueKey: "code",
         labelKey: "label",
         items: [
           {
@@ -130,31 +130,28 @@ function App() {
       }}>
         <Tradio
           option={{
-          valueKey: "code",
-          labelKey: "title",
           item: {
-            code: 'staticValue1',
-            title: 'staticLabel1'
+            value: "staticValue1",
+            label: "staticLabel1",
+            code: 10
           },
           disabled: false
         }}/>
         <Tradio
           option={{
-          valueKey: "code",
-          labelKey: "title",
           item: {
-            code: 'staticValue2',
-            title: 'staticLabel2'
+            value: "staticValue2",
+            label: "staticLabel2",
+            code: 20
           },
           disabled: false
         }}/>
         <Tradio
           option={{
-          valueKey: "code",
-          labelKey: "title",
           item: {
-            code: 'staticValue3',
-            title: 'staticLabel3'
+            value: "staticValue3",
+            label: "staticLabel3",
+            code: 30
           },
           disabled: false
         }}/>
