@@ -2,10 +2,10 @@
 ## Combo Component
 
 
-### `Properties`
+### `Props`
 
 
-| prop name        | type |default value           | example  |
+| Name        | Type |Default            | Description|
 | ------------- |---|:-------------:| -----|
 | label      |  string | | 'status' |
 | items      |  array | |   [{value:1,label:'red'},{value:2,label:'blue'}] |
@@ -14,11 +14,11 @@
 | labelProp  | string   | 'label' | label prop name in items array    |
 | disabled  | boolean   | false |     |
 | selectedValue  | typeof value   |    |
-| onSelectedItemChanged  | event   |  | fire when selected item changed|
+| onChange  | event   |  | fire when selected item changed|
 
 ### `Example`
 
-```javascript
+
     <Combo option={
         {
             label: 'سن',
@@ -27,7 +27,7 @@
                 {value: 20, label: 'twenty'},
                 {value: 30, label: 'thirty'}
             ],
-            onSelectedItemChanged: handleSelectedItem,
+            onChange: handleSelectedItem,
             fullWidth:true
         }
     }/>
@@ -41,7 +41,7 @@
             ],
             valueProp:'code',
             labelProp:'title',
-            onSelectedItemChanged: handleStatusChange,
+            onChange: handleStatusChange,
             disabled:true,
             selectedValue:2,
         }
@@ -56,9 +56,8 @@
             ],
             valueProp:'code',
             labelProp:'title',
-            onSelectedItemChanged: handleStatusChange,
+            onChange: handleStatusChange,
             disabled:false,
             selectedValue:1
         }
     }/>                  
-```

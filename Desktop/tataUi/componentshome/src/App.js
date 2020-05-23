@@ -10,6 +10,7 @@ import Tchekbox from './components/checkbox/index';
 import Tradio from './components/radio/index';
 import Tradiogrp from './components/radiogrp/index';
 import TExpansionPanel from "./components/ExpansionPanel/ExpansionPanel";
+import Tdialog from "./components/dialog/dialog";
 
 function App() {
   let showLabel = null;
@@ -23,6 +24,19 @@ function App() {
     setChecked] = React.useState(false);
   const [getSelectedRdb,
     setSelectedRdb] = React.useState({});
+
+  // for Dialog
+
+  const [open,
+    setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (value) => {
+    setOpen(false);
+  };
 
   const handleTextChange = event => {
     setClick(false);
@@ -59,7 +73,9 @@ function App() {
   }
 
   const expansionPanelProps = {
-    ExpansionPanel: {
+    body: "this is expansion panel",
+    header: "Hi everyBody",
+    expansionPanel: {
       expanded: undefined,
       defaultExpanded: undefined,
       TransitionComponent: undefined,
@@ -68,6 +84,34 @@ function App() {
       TransitionProps: undefined,
       expandIcon: undefined,
       onChange: undefined
+    }
+  }
+
+  //simple Dialog props
+  const simpleDialogProps = {
+    simpleDialog: {
+      disableBackdropClick: undefined,
+      disableEscapeKeyDown: undefined,
+      fullScreen: undefined,
+      fullWidth: undefined,
+      maxWidth: undefined,
+      onBackdropClick: undefined,
+      onClose: undefined,
+      onEnter: undefined,
+      onEntered: undefined,
+      onEntering: undefined,
+      onEscapeKeyDown: undefined,
+      onExit: undefined,
+      onExited: undefined,
+      onExiting: undefined,
+      open: undefined,
+      PaperComponent: undefined,
+      PaperProps: undefined,
+      scroll: undefined,
+      TransitionComponent: undefined,
+      transitionDuration: undefined,
+      TransitionProps: undefined,
+      dividers: true
     }
   }
 
@@ -104,7 +148,9 @@ function App() {
         row: false,
         defaultValue: "200",
         disabled: false,
-        disabledValues: ["staticValue1"],
+        disabledValues: [
+          10, 200
+        ],
         disabledIndexes: [],
         onChange: handleRdGrpChange,
         valueKey: "code",
@@ -158,12 +204,15 @@ function App() {
       </Tradiogrp>
 
       <Tcard raised={true} title={"this is title"}>hi!!! this is test for simple card</Tcard>
-      <TExpansionPanel
-        header={"hiiii"}
-        body={"this is test"}
-        {...expansionPanelProps}>
-        <Typography></Typography>
-      </TExpansionPanel>
+      <TExpansionPanel option={{
+        ...expansionPanelProps
+      }}/>
+      <Tbutton variant="outlined" color="primary" onClick={handleClickOpen}>
+        Open simple dialog
+      </Tbutton>
+      <Tdialog open={open} onClose={handleClose}>
+        <Tcard raised={true} title={"this is title"}>hi!!! this is test for simple card</Tcard>
+      </Tdialog>
 
     </div>
 

@@ -27,19 +27,19 @@ export default function Combo(props) {
         return '_' + Math.random().toString(36).substr(2, 9);
     };
 
-    const {label, items, valueProp = 'value', labelProp = 'label', id = uniqueID(), onSelectedItemChanged, disabled = false, selectedValue, fullWidth = false} = props.option;
+    const {label, items, valueProp = 'value', labelProp = 'label', id = uniqueID(), onChange, disabled = false, selectedValue, fullWidth = false} = props.option;
 
     const handleChange = (event) => {
         setState({
             value: event.target.value,
         });
 
-        if (onSelectedItemChanged) {
+        if (onChange) {
             var item = items.filter(item => String(item[valueProp]) === String(event.target.value));
             if (item && item.length > 0) {
                 item = item[0];
             }
-            onSelectedItemChanged(event, item);
+            onChange(event, item);
         }
     };
 

@@ -8,8 +8,8 @@ const useStyles = makeStyles({});
 export default function Tradiogrp(props) {
   const classes = useStyles();
 
-  const {
-    name = "ahmad",
+  let {
+    name = "name",
     row = true,
     defaultValue,
     disabled = false,
@@ -23,22 +23,24 @@ export default function Tradiogrp(props) {
 
   let staticList = [];
 
-  if (Array.isArray(props.children)) {
-    props
-      .children
-      .forEach(child => {
-        const option = child.props.option;
-        staticList.push(option.item);
-      });
-  } else {
-    const option = props.children.props.option;
-    staticList.push(option.item);
-  }
+  if (props.children) {
+    if (Array.isArray(props.children)) {
+      props
+        .children
+        .forEach(child => {
+          const option = child.props.option;
+          staticList.push(option.item);
+        });
+    } else {
+      const option = props.children.props.option;
+      staticList.push(option.item);
+    }
 
-  const mergedItems = [
-    ...staticList,
-    ...items
-  ];
+    items = [
+      ...staticList,
+      ...items
+    ];
+  }
 
   const [state,
     setState] = React.useState({staticList, defaultValue: String(defaultValue)});
@@ -46,7 +48,7 @@ export default function Tradiogrp(props) {
   const handleChange = event => {
     // event.persist();
     if (onChange) {
-      var selctedItem = mergedItems.filter(item => {
+      var selctedItem = items.filter(item => {
         return (String(item[valueKey]) === String(event.target.value));
       });
 
@@ -69,16 +71,14 @@ export default function Tradiogrp(props) {
         value={state.defaultValue}
         onChange={handleChange}>
 
-        {mergedItems.map((item, index) => <FormControlLabel
+        {items.map((item, index) => <Tradio
           disabled={(disabled)
           ? true
           : (disabledValues.length)
             ? disabledValues.includes(Number(item[valueKey]) || String(item[valueKey]))
             : disabledIndexes.includes(Number(index) || String(index))}
           key={String(item[valueKey])}
-          control={< Radio value = {
-          String(item[valueKey])
-        } />}
+          value={String(item[valueKey])}
           label={String(item[labelKey])}/>)}
 
       </RadioGroup>
