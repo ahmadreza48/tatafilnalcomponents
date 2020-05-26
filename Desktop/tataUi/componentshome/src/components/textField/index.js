@@ -8,7 +8,7 @@ export default function Ttextbox(props) {
   const classes = useStyles();
 
   const {
-    defaultValue = "default value",
+    defaultValue = "defaultValue",
     color = "primary",
     disabled = false
   } = props.option || props;

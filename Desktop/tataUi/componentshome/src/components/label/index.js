@@ -7,7 +7,12 @@ const useStyles = makeStyles({});
 export default function Tlabel(props) {
   const classes = useStyles();
 
-  const {value, variant, color, display} = props.option || props;
+  const {
+    value = "defaultValue",
+    variant = "body1",
+    color = "initial",
+    display = "initial"
+  } = props.option || props;
 
   return (
     <div>
