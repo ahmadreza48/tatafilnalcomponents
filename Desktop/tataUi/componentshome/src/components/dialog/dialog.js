@@ -23,16 +23,21 @@ const useStyles = makeStyles({
         top: '0',
         right: '0',
     },
+    btnPos: {
+        display: 'block',
+        margin: '0 auto',
+    }
 });
 
 
 const Tdialog = (props) => {
     const classes = useStyles();
-    const {onClose, open, simpleDialogProps, children, heading, confirmBtnTitle, rejectBtnTitle} = props.option || props;
+    const {onClose, open, simpleDialogProps, children, heading, confirmBtnTitle, rejectBtnTitle, position, scroll, dividers} = props.option || props;
 
     const handleClose = () => {
         onClose();
     };
+    console.log("handleClose:", handleClose);
 
     // const handleListItemClick = (value) => {
     //     onClose(value);
@@ -49,9 +54,9 @@ const Tdialog = (props) => {
                 </IconButton>
             </DialogTitle>
             <Divider/>
-            <DialogContent children={children}/>
+            <DialogContent children={children} dividers={scroll === 'paper'}/>
             <Divider/>
-            <DialogActions>
+            <DialogActions className={(position === 'center' ? classes.btnPos : '')}>
                 <Button onClick={handleClose}>{confirmBtnTitle}</Button>
                 <Button onClick={handleClose}>{rejectBtnTitle}</Button>
             </DialogActions>
