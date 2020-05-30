@@ -17,13 +17,17 @@ export default function Tnavigationbar(props) {
 
   const [menuPosition,
     setMenuPosition] = useState(null);
+  const [menuId,
+    setMenuId] = useState(null);
 
-  const handleRightClick = (event) => {
+  const handleRightClick = (event, id) => {
+    console.log(`handleRightClick id: ${id}`);
     if (menuPosition) {
       return;
     }
     event.preventDefault();
     setMenuPosition({top: event.pageY, left: event.pageX});
+    setMenuId(id);
   };
 
   const handleItemClick = (event) => {
@@ -35,12 +39,21 @@ export default function Tnavigationbar(props) {
     <div>
       <MenuList>
         <div className={classes.horizMenu}>
-          <MenuItem onClick={handleRightClick}>saeidi</MenuItem>
-          <MenuItem onClick={handleRightClick}>kashani</MenuItem>
-          <MenuItem onClick={handleRightClick}>talebi</MenuItem>
+          <MenuItem onClick={event => handleRightClick(event, 0)}>saeidi</MenuItem>
+          <MenuItem onClick={event => handleRightClick(event, 1)}>kashani</MenuItem>
+          <MenuItem onClick={event => handleRightClick(event, 2)}>talebi</MenuItem>
         </div>
       </MenuList>
-      <Menu
+
+      {/* filter items and show childrens...> */}
+      <Menu></Menu>
+
+    </div>
+
+  );
+};
+
+{/* <Menu
         open={!!menuPosition}
         onClose={() => setMenuPosition(null)}
         anchorReference="anchorPosition"
@@ -69,8 +82,5 @@ export default function Tnavigationbar(props) {
           <MenuItem onClick={handleItemClick}>Sub-Button 1</MenuItem>
           <MenuItem onClick={handleItemClick}>Sub-Button 2</MenuItem>
         </NestedMenuItem>
-      </Menu>
-    </div>
-
-  );
-};
+      </Menu> */
+}
